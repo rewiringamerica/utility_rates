@@ -1,0 +1,59 @@
+[project]
+name = "rates"
+version = "0.1.0"
+description = "Package for defining and analyzing utility rate structures."
+authors = [
+    {name = "Natalie Weires", email = "nataliew@rewiringamerica.org"},
+    {name = "Miki Verma", email = "miki@rewiringamerica.org"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+
+
+[tool.poetry.requires-plugins]
+# Needed to export to requirements.txt
+poetry-plugin-export = ">=1.8"
+
+[tool.poetry.dependencies]
+# Note: Dependency versions are chosen to match Databricks runtime 15.4
+ipywidgets = ">=7.7.2"
+numpy = "1.23.5"
+matplotlib = ">=3.7.2"
+pandas =">=1.5.3"
+seaborn = ">=0.12.2"
+pyspark = ">=3.5.0"
+
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.2"
+pre-commit = "^4.3.0"
+black = "^25.1.0"
+ruff = "^0.11.7"
+isort = "^6.0.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = [
+    "src"
+]
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["D", "D213", "D417"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
