@@ -13,12 +13,8 @@ This repo has code to help you:
 This is designed to be run on Databricks clusters with the 15.4 LTS runtime (Python 3.11), though it can also
 run in a local Jupyter notebook.
 
-There is a dedicated shared [Rates Databricks cluster](https://4617764665359845.5.gcp.databricks.com/compute/clusters/5603-113548-wwykpo0?o=4617764665359845) that has the correct runtime and sufficient resources to run rates analyses and the dependencies in `pyproject.toml` already installed. 
-
-New users can be added to the `rates` [user group in Databricks](https://accounts.gcp.databricks.com/user-management/groups/227323591515086/members). This will grant read access to the tables most commonly used when doing rates analyses.
 
 ## Examples
-
 We recommend starting with the [`basic_demo.ipynb`](notebooks/basic_demo/basic_demo.ipynb). You can use this notebook directly
 to enter a rate schedule and do some basic analysis, or copy from it to create your own.
 It provides an example of [the required data input format](notebooks/basic_demo/resstock_electric_load_profile_baseline_sample.csv). 
