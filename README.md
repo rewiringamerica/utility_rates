@@ -1,4 +1,4 @@
-<img width="945" height="2048" alt="image" src="https://github.com/user-attachments/assets/403ca2d5-de73-4a14-806a-b37f950d1d1d" /># rates
+# rates
 Modeling rate structures applied to ResStock buildings.
 
 This repo has code to help you:
