@@ -51,3 +51,5 @@ Enable [pre-commit checks](https://pre-commit.com/) with:
 ```shell
 pre-commit install
 ```
+# Contact
+For questions, updates, or to join our open source community, please reach out to `opensource@rewiringamerica.org`. 
