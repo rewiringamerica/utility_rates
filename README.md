@@ -1,4 +1,4 @@
-# rates
+<img width="945" height="2048" alt="image" src="https://github.com/user-attachments/assets/403ca2d5-de73-4a14-806a-b37f950d1d1d" /># rates
 Modeling rate structures applied to ResStock buildings.
 
 This repo has code to help you:
@@ -51,3 +51,5 @@ Enable [pre-commit checks](https://pre-commit.com/) with:
 ```shell
 pre-commit install
 ```
+# Contact
+For questions, updates, or to join our open source community, please reach out to `opensource@rewiringamerica.org`. 
