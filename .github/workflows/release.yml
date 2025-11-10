@@ -1,0 +1,63 @@
+# Publish the rates python package to GCP Artifact Registry (for internal RA use)
+
+name: Publish to Artifact Registry
+
+on:
+  release:
+    types: [published]
+
+env:
+  GCP_PROJECT: cube-machine-learning
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Validate release tag
+      run: |
+        # Required tag format (X.Y.Z)
+        TAG_FORMAT="^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        # Get the release tag
+        RELEASE_TAG="${{ github.event.release.tag_name }}"
+        # Check if the tag matches the required format
+        if [[ ! $RELEASE_TAG =~ $TAG_FORMAT ]]; then
+          echo "❌ Release tag '$RELEASE_TAG' does not match the required format '$TAG_FORMAT'."
+          exit 1
+        fi
+        echo "✅ Release tag '$RELEASE_TAG' is valid."
+
+    # See https://github.com/google-github-actions/auth#usage
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v2'
+      with:
+        token_format: 'access_token'
+        project_id: 'cube-machine-learning'
+        service_account: 'github-artifact-registry@cube-machine-learning.iam.gserviceaccount.com'
+        workload_identity_provider: 'projects/777182164725/locations/global/workloadIdentityPools/github/providers/ra-github-repo'
+
+    # We have to install keyring auth in the global python install in order to enable
+    # poetry to be able to use it to push to our private artifact registry.
+
+    - name: Install keyring auth
+      run: |
+        pip install keyring keyrings-google-artifactregistry-auth
+
+    - name: Check keyring
+      run: |
+        keyring --list-backends
+
+    - name: Install poetry
+      uses: abatilo/actions-poetry@v2
+
+    - name: Configure artifact registry with poetry
+      run: poetry config repositories.gcp https://us-central1-python.pkg.dev/cube-machine-learning/rewiring-america-python-repo
+
+    - name: Push to artifact registry
+      run: poetry publish --build --repository gcp
