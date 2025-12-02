@@ -1,5 +1,5 @@
 # Utility rates
-Package to model utility rate structures applied to buildings' load profiles.
+
 
 This repo has code to help you:
 - Interactively define a rate schedule, including seasonal and time-of-use (TOU) rates.
