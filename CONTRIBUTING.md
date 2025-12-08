@@ -13,7 +13,7 @@ PRs will be reviewed on a best-effort basis.
 
 Pull request descriptions should follow the outline in our PR template, including
 a description of the change and how it has been tested. The code changes should also
-pass our [pre-submit checks](./.pre-commit-config.yaml).
+pass our [pre-commit checks](./.pre-commit-config.yaml).
 
 
 ## Testing
