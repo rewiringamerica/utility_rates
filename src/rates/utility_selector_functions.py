@@ -58,7 +58,7 @@ def create_electric_utility_widget(
     utility_init_value = "-- Select Utility --"
 
     # Load table of [state, utility_name]
-    df = spark.table("geographic_crosswalk.electric_utility_to_county_geoid")
+    df = spark.table("processed.geospatial_crosswalk.electric_utility_to_county_geoid")
     state_utility_df = df[["state", "utility_name"]].distinct().toPandas()
 
     # Initialize widgets
@@ -152,7 +152,7 @@ def select_county_geoids_in_utility(selector: Dict[str, str]) -> List[str]:
     """
     # select county names and geoids in the electric utility x state and convert to pandas
     selected_counties_df = (
-        spark.table("geographic_crosswalk.electric_utility_to_county_geoid")
+        spark.table("processed.geospatial_crosswalk.electric_utility_to_county_geoid")
         .where(F.col("state") == selector["state"])
         .where(F.col("utility_name") == selector["utility"])
         .select("county_name", "county_geoid")
